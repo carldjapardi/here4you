@@ -75,9 +75,9 @@
 		C3BF26FF2ED03E9B0088872D = {
 			isa = PBXGroup;
 			children = (
-				C3BF270A2ED03E9B0088872D /* here4you */,
 				C3BF27182ED03E9B0088872D /* here4youTests */,
 				C3BF27222ED03E9B0088872D /* here4youUITests */,
+				C3BF270A2ED03E9B0088872D /* here4you */,
 				C3BF27092ED03E9B0088872D /* Products */,
 			);
 			sourceTree = "<group>";

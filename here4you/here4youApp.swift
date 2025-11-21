@@ -6,12 +6,14 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
 struct here4youApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .modelContainer(for: Profile.self)
         }
     }
 }
