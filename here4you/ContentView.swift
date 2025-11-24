@@ -11,16 +11,24 @@ struct ContentView: View {
     var body: some View {
         TabView {
             Tab("Home", systemImage: "house.fill") {
-                HomeView()
+                NavigationStack {
+                    HomeView()
+                }
             }
-            Tab("Message", systemImage: "message.fill") {
-                MessageView()
-            }.badge(2)
-            Tab("Appointment", systemImage: "calendar") {
-                AppointmentView()
+            Tab("Messages", systemImage: "message.fill") {
+                NavigationStack {
+                    MessageView()
+                }
+            }
+            Tab("Appointments", systemImage: "calendar") {
+                NavigationStack {
+                    AppointmentView()
+                }
             }
             Tab("Account", systemImage: "person.crop.circle") {
-                AccountView()
+                NavigationStack {
+                    AccountView()
+                }
             }
         }
     }

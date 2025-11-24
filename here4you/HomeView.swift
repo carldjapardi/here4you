@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftData
 
 struct HomeView: View {
-    @Query private var profiles: [Profile]
+    @Query private var profiles: [CareTaker]
     @Environment(\.modelContext) private var modelContext
     var body : some View {
         List {

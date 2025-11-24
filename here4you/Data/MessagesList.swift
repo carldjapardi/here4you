@@ -8,13 +8,23 @@
 import SwiftData
 
 @Model
-class MessagesList {
-    var messageProfiles: [Profile]
+final class MessagesList {
+    var owner: User
+    var participant: CareTaker
+    @Relationship(deleteRule: .cascade, inverse: \Message.thread)
+    var messages: [Message]
     
-    init(messageProfiles: [Profile]) {
-        self.messageProfiles = messageProfiles
+    init(
+        owner: User,
+        participant: CareTaker,
+        messages: [Message] = []
+    ) {
+        self.owner = owner
+        self.participant = participant
+        self.messages = messages
     }
-    static let sampleData = [
-        MessagesList(messageProfiles: [Profile.sampleData[0], Profile.sampleData[2]]),
-    ]
+    
+    var latestMessage: Message? {
+        messages.sorted { $0.sentAt > $1.sentAt }.first
+    }
 }
