@@ -38,7 +38,12 @@ struct AppointmentView: View {
             .onDelete(perform: deleteAppointment)
         }
         .navigationTitle("Appointments")
-        .toolbar { EditButton() }
+        .toolbar {
+            ToolbarItem(placement: .principal) {
+                Text("Here4You").font(.headline).foregroundStyle(.blue)
+            }
+            ToolbarItem(placement: .topBarTrailing) { EditButton() }
+        }
     }
     private func deleteAppointment(at offsets: IndexSet) {
         for index in offsets {

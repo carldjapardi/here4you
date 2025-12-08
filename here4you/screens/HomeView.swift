@@ -27,7 +27,10 @@ struct HomeView: View {
             }
             .padding()
         }
-        .navigationTitle("Caretaker Profiles")
+        .navigationTitle("CareTaker Profiles")
+        .toolbar {ToolbarItem(placement: .principal) {
+            Text("Here4You").font(.headline).foregroundStyle(.blue)
+        }}
         .sheet(item: $selectedCareTaker) { careTaker in
             if let currentUser {
                 SheetRouterView(

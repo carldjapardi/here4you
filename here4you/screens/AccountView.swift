@@ -54,6 +54,9 @@ struct AccountView: View {
             }
         }
         .navigationTitle("Account")
+        .toolbar {ToolbarItem(placement: .principal) {
+            Text("Here4You").font(.headline).foregroundStyle(.blue)
+        }}
     }
 }
 
