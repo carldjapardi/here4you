@@ -28,6 +28,8 @@ struct BookingView: View {
                 
                 Section {
                     DatePicker("Time", selection: $selectedTime, displayedComponents: .hourAndMinute)
+                        .onAppear { UIDatePicker.appearance().minuteInterval = 30 }
+                        .onDisappear { UIDatePicker.appearance().minuteInterval = 1 }
                 } header: { Text("Select Time") }
                 
                 Section {

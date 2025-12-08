@@ -13,6 +13,7 @@ struct CareTakerCard: View {
     let onTap: () -> Void
     
     var body: some View {
+        let formattedHourlyRate = String(format: "%.1f", careTaker.hourlyRate)
         Button(action: onTap) {
             VStack(alignment: .leading, spacing: 12) {
                 HStack {
@@ -21,7 +22,7 @@ struct CareTakerCard: View {
                         Text(careTaker.name)
                             .font(.title2).fontWeight(.bold).foregroundColor(.primary)
                         
-                        Text("Available")
+                        Text(careTaker.location)
                             .font(.subheadline).foregroundColor(.green)
                     }.padding(.leading, 8)
                     Spacer()
@@ -29,8 +30,8 @@ struct CareTakerCard: View {
                         .foregroundColor(.secondary).padding(.trailing, 8)
                 }
                 
-                Text(careTaker.desc)
-                    .font(.body).foregroundColor(.secondary).lineLimit(2).multilineTextAlignment(.leading)
+                Text("$\(formattedHourlyRate)/hr | Phone: \(careTaker.phoneNumber)")
+                    .font(.body).foregroundColor(.primary)
             }
             .padding(20)
             .background {cardBackground}
@@ -53,9 +54,4 @@ struct CareTakerCard: View {
             .fill(Color(.systemBackground))
             .shadow(color: Color.black.opacity(0.2), radius: 4, x: 0, y: 2)
     }
-}
-
-#Preview {
-    ContentView()
-        .modelContainer(SampleData.shared.modelContainer)
 }

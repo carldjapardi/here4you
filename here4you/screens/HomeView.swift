@@ -12,10 +12,11 @@ struct HomeView: View {
     @Query private var profiles: [CareTaker]
     @Query private var users: [User]
     @Environment(\.modelContext) private var modelContext
+    @AppStorage("currentUserID") private var currentUserID = ""
     @State private var selectedCareTaker: CareTaker?
     
     var body: some View {
-        let currentUser = users.first ?? User(name: "Evelyn Harper")
+        let currentUser = users.first(where: { $0.id.uuidString == currentUserID }) ?? users.first
         ScrollView {
             LazyVStack(spacing: 16) {
                 ForEach(profiles) { profile in
@@ -28,17 +29,14 @@ struct HomeView: View {
         }
         .navigationTitle("Caretaker Profiles")
         .sheet(item: $selectedCareTaker) { careTaker in
-            SheetRouterView(
-                careTaker: careTaker,
-                currentUser: currentUser,
-                modelContext: modelContext,
-                selectedCareTaker: $selectedCareTaker,
-            )
+            if let currentUser {
+                SheetRouterView(
+                    careTaker: careTaker,
+                    currentUser: currentUser,
+                    modelContext: modelContext,
+                    selectedCareTaker: $selectedCareTaker
+                )
+            }
         }
     }
-}
-
-#Preview {
-    ContentView()
-        .modelContainer(SampleData.shared.modelContainer)
 }

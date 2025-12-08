@@ -9,23 +9,46 @@ import SwiftUI
 import SwiftData
 
 struct AppointmentView: View {
-    @Query var appointments: [Appointment]
+    @Environment(\.modelContext) private var modelContext
+    @AppStorage("currentUserID") private var currentUserID = ""
+    @Query(sort: \Appointment.dateAndTime) private var appointments: [Appointment]
+    @Query private var users: [User]
     
-    var body: some View {
-        List(appointments) { appt in
-            VStack(alignment: .leading) {
-                Text("Your booking with \(appt.careTaker.name)")
-                    .font(.headline)
-                Text(appt.dateAndTime, format: .dateTime.month().day().hour().minute())
-                    .font(.subheadline).foregroundStyle(.secondary)
+    var myAppointments: [Appointment] {
+            if currentUserID.isEmpty {
+                return appointments
             }
-            .padding(.vertical, 20)
+            return appointments.filter { appt in
+                appt.user.id.uuidString == currentUserID
+            }
+        }
+
+    var body: some View {
+        List {
+            ForEach(myAppointments, id: \.self) { appt in
+                VStack(alignment: .leading) {
+                    Text("Your booking with \(appt.careTaker.name)")
+                        .font(.headline)
+                    Text(appt.dateAndTime, format: .dateTime.month().day().hour().minute())
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
+                }
+                .padding(.vertical, 20)
+            }
+            .onDelete(perform: deleteAppointment)
         }
         .navigationTitle("Appointments")
+        .toolbar { EditButton() }
     }
-}
-
-#Preview {
-    ContentView()
-        .modelContainer(SampleData.shared.modelContainer)
+    private func deleteAppointment(at offsets: IndexSet) {
+        for index in offsets {
+            let appointmentToDelete = myAppointments[index]
+            modelContext.delete(appointmentToDelete)
+        }
+        do {
+            try modelContext.save()
+        } catch {
+            print("Failed to delete \(error)")
+        }
+    }
 }

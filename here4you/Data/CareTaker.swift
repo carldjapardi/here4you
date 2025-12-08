@@ -13,6 +13,9 @@ final class CareTaker {
     @Attribute(.unique) var id: UUID
     var name: String
     var desc: String
+    var location: String
+    var hourlyRate: Double
+    var phoneNumber: String
     @Relationship(deleteRule: .cascade, inverse: \Appointment.careTaker)
     var appointments: [Appointment]
     
@@ -20,11 +23,17 @@ final class CareTaker {
         id: UUID = UUID(),
         name: String,
         desc: String,
+        location: String,
+        hourlyRate: Double,
+        phoneNumber: String,
         appointments: [Appointment] = [],
     ) {
         self.id = id
         self.name = name
         self.desc = desc
+        self.location = location
+        self.hourlyRate = hourlyRate
+        self.phoneNumber = phoneNumber
         self.appointments = appointments
     }
 }
