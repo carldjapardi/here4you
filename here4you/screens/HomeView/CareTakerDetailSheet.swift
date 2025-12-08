@@ -22,7 +22,8 @@ struct CareTakerDetailSheet: View {
                         circleComponent
                         VStack(alignment: .leading, spacing: 8) {
                             Text(careTaker.name).font(.largeTitle).fontWeight(.bold)
-                            Text("Available").font(.headline).foregroundColor(.green)
+                            Text(careTaker.location).font(.headline).foregroundColor(.green)
+                            Text(careTaker.phoneNumber).font(.headline).foregroundColor(.green)
                         }
                         Spacer()
                     }

@@ -46,7 +46,7 @@ struct here4youApp: App {
                 phoneNumber: "707-555-0987"
             ),
             CareTaker(
-                name: "Pomona Sprout",
+                name: "Snivellus Snape",
                 desc: "Great with medication reminders, nutrition, and light outdoor exercise.",
                 location: "Sonoma",
                 hourlyRate: 42.00,
@@ -60,10 +60,10 @@ struct here4youApp: App {
                 phoneNumber: "415-555-6789"
             ),
             CareTaker(
-                name: "Luna Lovegood",
+                name: "Albus Dumbldore",
                 desc: "Focuses on dementia care with exceptional patience and empathy.",
                 location: "Petaluma",
-                hourlyRate: 35.00,
+                hourlyRate: 167.00,
                 phoneNumber: "707-555-4321"
             )
         ]
