@@ -15,11 +15,6 @@ struct ContentView: View {
                     HomeView()
                 }
             }
-            Tab("Messages", systemImage: "message.fill") {
-                NavigationStack {
-                    MessageView()
-                }
-            }
             Tab("Appointments", systemImage: "calendar") {
                 NavigationStack {
                     AppointmentView()

@@ -14,18 +14,15 @@ final class User {
     var name: String
     @Relationship(deleteRule: .cascade, inverse: \Appointment.user)
     var appointments: [Appointment]
-    @Relationship(deleteRule: .cascade, inverse: \MessagesList.owner)
-    var messageThreads: [MessagesList]
     
     init(
         id: UUID = UUID(),
         name: String,
         appointments: [Appointment] = [],
-        messageThreads: [MessagesList] = []
     ) {
         self.id = id
         self.name = name
         self.appointments = appointments
-        self.messageThreads = messageThreads
+
     }
 }
