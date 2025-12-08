@@ -13,7 +13,8 @@ struct here4youApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .modelContainer(for: [CareTaker.self, Appointment.self, User.self])
+                //.modelContainer(for: [CareTaker.self, Appointment.self, User.self])
+                .modelContainer(SampleData.shared.modelContainer)
         }
     }
 }

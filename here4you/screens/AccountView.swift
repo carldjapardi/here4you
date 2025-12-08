@@ -12,3 +12,8 @@ struct AccountView: View {
         Text("Account View")
     }
 }
+
+#Preview {
+    ContentView()
+        .modelContainer(SampleData.shared.modelContainer)
+}
